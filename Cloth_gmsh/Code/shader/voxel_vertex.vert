@@ -117,12 +117,14 @@ void main(void)
   ////////////////////////////////////////////////////////////////////////////////
   /////////////////// VOXEL'S VERTEX BARICENTRIC COORDINATES /////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  vs_out.vertex_A = P_mat*V_mat*(voxel_center + vec4(s*A, 1.0));                // Computing vertex "A".
-  vs_out.vertex_B = P_mat*V_mat*(voxel_center + vec4(s*B, 1.0));                // Computing vertex "B".
+  vec4 pippo = voxel_center;
+  pippo.z = gl_VertexID/10000.0f;
+  vs_out.vertex_A = P_mat*V_mat*(pippo + vec4(s*A, 1.0));                // Computing vertex "A".
+  vs_out.vertex_B = P_mat*V_mat*(pippo + vec4(s*B, 1.0));                // Computing vertex "B".
   vs_out.vertex_C = P_mat*V_mat*(voxel_center + vec4(s*C, 1.0));                // Computing vertex "C".
   vs_out.vertex_D = P_mat*V_mat*(voxel_center + vec4(s*D, 1.0));                // Computing vertex "D".
-  vs_out.vertex_E = P_mat*V_mat*(voxel_center + vec4(s*E, 1.0));                // Computing vertex "E".
-  vs_out.vertex_F = P_mat*V_mat*(voxel_center + vec4(s*F, 1.0));                // Computing vertex "F".
+  vs_out.vertex_E = P_mat*V_mat*(pippo + vec4(s*E, 1.0));                // Computing vertex "E".
+  vs_out.vertex_F = P_mat*V_mat*(pippo + vec4(s*F, 1.0));                // Computing vertex "F".
   vs_out.vertex_G = P_mat*V_mat*(voxel_center + vec4(s*G, 1.0));                // Computing vertex "G".
   vs_out.vertex_H = P_mat*V_mat*(voxel_center + vec4(s*H, 1.0));                // Computing vertex "H".
 
