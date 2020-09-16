@@ -2,7 +2,7 @@
 #version 410 core
 
 layout (points) in;                                                             // Input points.
-layout (triangle_strip, max_vertices = 26) out;                                 // Output points.
+layout (points, max_vertices = 26) out;                                 // Output points.
 
 in VS_OUT
 {
@@ -22,7 +22,7 @@ void main()
 
   voxel_color = gs_in[0].color;                                                 // Setting voxel color...
   voxel_center = P_mat*V_mat*gs_in[0].center;                                   // Setting voxel center...
-  gl_Position = gs_in[0].center;                                                // Setting voxel position...
+  gl_Position = voxel_center;                                                   // Setting voxel position...
   EmitVertex();         
   EndPrimitive();                                                        
 }

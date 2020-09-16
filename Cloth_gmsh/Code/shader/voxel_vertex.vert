@@ -1,8 +1,8 @@
 /// @file
 #version 410 core
 
-layout (location = 0) in vec4 voxel_color;                                      // Voxel center.
-layout (location = 1) in vec4 voxel_center;                                     // Voxel color.
+layout (location = 0) in vec4 voxel_color;                                      // Voxel color.
+layout (location = 1) in vec4 voxel_center;                                     // Voxel center.
 
 out VS_OUT
 {
@@ -19,6 +19,7 @@ uniform mat4 P_mat;                                                             
 // Computing rendering point coordinates:
 void main(void)
 {
+  gl_Position = P_mat*V_mat*voxel_center;
   vs_out.color = voxel_color;                    
   vs_out.center = voxel_center;            
   vs_out.V_mat = V_mat;     
