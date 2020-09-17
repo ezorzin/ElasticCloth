@@ -13,26 +13,21 @@ in VS_OUT
 } gs_in[];
 
 out vec4 voxel_color;                                                           // Voxel color (for fragment shader).
-out vec2 pointPos;
+
+const float size = 40;
 
 void main()
 {
-  vec4 voxel_center;
-  vec2 ndcPos;
-  vec2 screen;
-  mat4 V_mat;
-  mat4 P_mat;
+  vec4 voxel_center;                                                            // Voxel center.                              
+  mat4 V_mat;                                                                   // View matrix.
+  mat4 P_mat;                                                                   // Projection matrix.
 
-  V_mat = gs_in[0].V_mat;
-  P_mat = gs_in[0].P_mat;
+  V_mat = gs_in[0].V_mat;                                                       // Getting view matrix...
+  P_mat = gs_in[0].P_mat;                                                       // Getting projection matrix...
   voxel_color = gs_in[0].color;                                                 // Setting voxel color...
   voxel_center = gs_in[0].center;                                               // Setting voxel center...  
-  gl_Position = P_mat*V_mat*voxel_center;
-  gl_PointSize = (1.0 - gl_Position.z / gl_Position.w) * 20;
-  EmitVertex();
-  EndPrimitive();                
-
-  screen = vec2(800.0, 600.0);
-  ndcPos = gl_Position.xy/gl_Position.w;
-  pointPos = screen*(0.5*ndcPos + 0.5);                      
+  gl_Position = P_mat*V_mat*voxel_center;                                       // Setting voxel position...
+  gl_PointSize = (1.0 - gl_Position.z / gl_Position.w) * size;                  // Computing voxel point size...
+  EmitVertex();                                                                 // Emitting vertex...
+  EndPrimitive();                                                               // Ending primitive...
 }
