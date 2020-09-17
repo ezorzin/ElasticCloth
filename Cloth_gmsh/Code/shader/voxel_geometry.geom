@@ -28,7 +28,7 @@ void main()
   voxel_color = gs_in[0].color;                                                 // Setting voxel color...
   voxel_center = gs_in[0].center;                                               // Setting voxel center...  
   gl_Position = P_mat*V_mat*voxel_center;
-  gl_PointSize = 10.0;
+  gl_PointSize = (1.0 - gl_Position.z / gl_Position.w) * 20;
   EmitVertex();
   EndPrimitive();                
 
