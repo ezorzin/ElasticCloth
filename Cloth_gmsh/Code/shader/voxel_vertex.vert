@@ -19,9 +19,8 @@ uniform mat4 P_mat;                                                             
 // Computing rendering point coordinates:
 void main(void)
 {
-  gl_Position = P_mat*V_mat*voxel_center;
   vs_out.color = voxel_color;                    
-  vs_out.center = voxel_center;            
-  vs_out.V_mat = V_mat;     
-  vs_out.P_mat = P_mat;        
+  vs_out.center = voxel_center;        
+  vs_out.V_mat = V_mat;
+  vs_out.P_mat = P_mat;
 }
