@@ -16,7 +16,7 @@ out vec4 voxel_color;                                                           
 out vec4 voxel_center;
 out vec4 voxel_point;
 
-const float size = 30;
+const float size = 40;
 
 void main()
 {                           
