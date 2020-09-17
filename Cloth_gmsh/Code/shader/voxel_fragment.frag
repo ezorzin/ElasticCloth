@@ -15,6 +15,7 @@ void main(void)
   float d;
   vec3 color;
   
+  /*
   dist = distance(pointPos, gl_FragCoord.xy);
 
   if (dist > R)
@@ -24,7 +25,7 @@ void main(void)
    
   d = dist/R;
   color = mix(voxel_color.rgb, vec3(0.0), step(1.0 - T, d));
-
+*/
   //fragment_color = vec4(color, 1.0);
   fragment_color = voxel_color;
 }
