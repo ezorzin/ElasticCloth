@@ -13,8 +13,6 @@ out VS_OUT
   vec4 center;                                                                  // Center.
 } vs_out;
 
-/// @function
-// Computing rendering point coordinates:
 void main(void)
 {
   vs_out.color = voxel_color;                    
