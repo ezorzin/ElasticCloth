@@ -1,35 +1,45 @@
 /// @file
 #version 410 core
 
+#define s 0.005
+
 layout (points) in;                                                             // Input points.
-layout (points, max_vertices = 26) out;                                         // Output points.
+layout (triangle_strip, max_vertices = 4) out;                                  // Output points.
+
+uniform mat4 V_mat;                                                             // View matrix.
+uniform mat4 P_mat;                                                             // Projection matrix.
+uniform float AR;                                                               // Viewport aspect ratio.
 
 in VS_OUT
 {
   vec4 color;                                                                   // Color.
   vec4 center;                                                                  // Center.
-  mat4 V_mat;
-  mat4 P_mat;
 } gs_in[];
 
 out vec4 voxel_color;                                                           // Voxel color (for fragment shader).
-out vec4 voxel_center;
-out vec4 voxel_point;
-
-const float size = 40;
 
 void main()
-{                           
-  mat4 V_mat;                                                                   // View matrix.
-  mat4 P_mat;                                                                   // Projection matrix.
-
-  V_mat = gs_in[0].V_mat;                                                       // Getting view matrix...
-  P_mat = gs_in[0].P_mat;                                                       // Getting projection matrix...
-  voxel_color = gs_in[0].color;                                                 // Setting voxel color...
-  voxel_center = gs_in[0].center;                                               // Setting voxel center...  
-  voxel_point = P_mat*V_mat*voxel_center;
-  gl_Position = voxel_point;                                                    // Setting voxel position...
-  gl_PointSize = (1.0 - gl_Position.z / gl_Position.w) * size;                  // Computing voxel point size...
+{              
+  vec4 A = vec4(-s, -s*AR, 0.0, 0.0);
+  vec4 B = vec4(+s, -s*AR, 0.0, 0.0);
+  vec4 C = vec4(-s, +s*AR, 0.0, 0.0);
+  vec4 D = vec4(+s, +s*AR, 0.0, 0.0);            
+  
+  voxel_color = gs_in[0].color;                                                 // Setting voxel color...  
+  gl_Position = P_mat*V_mat*(gs_in[0].center) + A;                             // Setting voxel position...
   EmitVertex();                                                                 // Emitting vertex...
+
+  voxel_color = gs_in[0].color;                                                 // Setting voxel color...
+  gl_Position = P_mat*V_mat*(gs_in[0].center) + B;                              // Setting voxel position...
+  EmitVertex(); 
+
+  voxel_color = gs_in[0].color;                                                 // Setting voxel color...
+  gl_Position = P_mat*V_mat*(gs_in[0].center) + C;                              // Setting voxel position...
+  EmitVertex(); 
+
+  voxel_color = gs_in[0].color;                                                 // Setting voxel color...
+  gl_Position = P_mat*V_mat*(gs_in[0].center) + D;                              // Setting voxel position...
+  EmitVertex(); 
+
   EndPrimitive();                                                               // Ending primitive...
 }

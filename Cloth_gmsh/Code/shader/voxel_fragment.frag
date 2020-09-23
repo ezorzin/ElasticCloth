@@ -3,8 +3,6 @@
 #version 410 core
 
 in  vec4 voxel_color;                                                           // Voxel color.
-in  vec4 voxel_center; 
-in  vec4 voxel_point;
 out vec4 fragment_color;                                                        // Fragment color.
 
 void main(void)
@@ -21,10 +19,13 @@ void main(void)
   k2 = 1.0 - smoothstep(0.0, 0.1, R);
   k3 = 1.0 - smoothstep(0.2, 0.3, R);
 
+  /*
   if (k1 == 0.0)
   {
     discard;                                                                    // Discarding fragment point...
   }
+  */
 
-  fragment_color = vec4(0.8*vec3(k2, 1.2*k3, k1) + voxel_color.rgb, 0.2 + k1);
+  //fragment_color = vec4(0.8*vec3(k2, 1.2*k3, k1) + voxel_color.rgb, 0.2 + k1);
+  fragment_color = voxel_color;
 }
