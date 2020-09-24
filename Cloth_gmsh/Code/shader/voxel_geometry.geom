@@ -1,7 +1,7 @@
 /// @file
 #version 410 core
 
-#define s 0.005
+#define s 0.02
 
 layout (points) in;                                                             // Input points.
 layout (triangle_strip, max_vertices = 4) out;                                  // Output points.
