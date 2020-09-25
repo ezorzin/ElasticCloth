@@ -22,10 +22,10 @@ out vec2 quad;
 
 void main()
 {              
-  vec4 A = vec4(-s, -s*AR, 0.0, 0.0);
-  vec4 B = vec4(+s, -s*AR, 0.0, 0.0);
-  vec4 C = vec4(-s, +s*AR, 0.0, 0.0);
-  vec4 D = vec4(+s, +s*AR, 0.0, 0.0);            
+  vec4 A = vec4(-s/AR, -s, 0.0, 0.0);
+  vec4 B = vec4(+s/AR, -s, 0.0, 0.0);
+  vec4 C = vec4(-s/AR, +s, 0.0, 0.0);
+  vec4 D = vec4(+s/AR, +s, 0.0, 0.0);            
   
   voxel_center = gs_in[0].center;                                               // Setting voxel center...              
 
