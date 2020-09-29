@@ -28,5 +28,6 @@ void main(void)
     discard;                                                                    // Discarding fragment point...
   }
 
-  fragment_color = vec4(0.8*vec3(k2, 1.2*k3, k1) + voxel_color.rgb, 0.2 + k1);
+  //fragment_color = vec4(0.8*vec3(k2, 1.2*k3, k1) + voxel_color.rgb, 0.2 + k1);
+  fragment_color = voxel_color;
 }
